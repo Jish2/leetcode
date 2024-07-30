@@ -1,0 +1,3 @@
+[submodule "heatmap/readme-heatmap"]
+	path = heatmap/readme-heatmap
+	url = git@github.com:Jish2/readme-heatmap.git
