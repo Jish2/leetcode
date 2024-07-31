@@ -12,6 +12,7 @@ from typing import List
 class Solution:
     def minHeightShelves(self, books: List[List[int]], shelfWidth: int) -> int:
         n = len(books)
+        dp = [[float("inf") for _ in range(shelfWidth + 1)] for _ in range(n)]
 
         def dfs(i, sw, mh):
             thickness, height = books[i]
@@ -24,6 +25,9 @@ class Solution:
                     # otherwise add current row
                     return new_h
 
+            if dp[i][sw] != float("inf"):
+                return dp[i][sw]
+
             # same line case
             a = float("inf")
             if sw - thickness >= 0:
@@ -33,6 +37,7 @@ class Solution:
             b = mh + dfs(i + 1, shelfWidth - thickness, height)
 
             res = min(a, b)
+            dp[i][sw] = res
             return res
 
         return dfs(0, shelfWidth, 0)
